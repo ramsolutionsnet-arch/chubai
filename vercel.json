@@ -1,12 +1,7 @@
 {
   "version": 2,
-  "routes": [
-    { "src": "/api/health", "dest": "/api/health.js" },
-    { "src": "/api/generate-script", "dest": "/api/generate-script.js" },
-    { "src": "/api/fetch-clips", "dest": "/api/fetch-clips.js" },
-    { "src": "/api/fetch-music", "dest": "/api/fetch-music.js" },
-    { "src": "/css/(.*)", "dest": "/public/css/$1" },
-    { "src": "/js/(.*)", "dest": "/public/js/$1" },
-    { "src": "/(.*)", "dest": "/public/index.html" }
+  "rewrites": [
+    { "source": "/api/:path*", "destination": "/api/:path*" },
+    { "source": "/(.*)", "destination": "/index.html" }
   ]
 }
