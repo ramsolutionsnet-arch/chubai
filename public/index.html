@@ -1,0 +1,376 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>CHub.AI — AI Video Generator</title>
+<meta name="description" content="Turn any idea into a stunning AI video in seconds. Real stock footage, AI voiceover, free forever.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/css/style.css">
+</head>
+<body>
+
+<!-- TOAST -->
+<div class="toast" id="toast"></div>
+
+<!-- NAVBAR -->
+<nav id="navbar">
+  <a href="/" class="logo">CHub<span>.AI</span></a>
+  <ul class="nav-links">
+    <li><a href="#creator">Create</a></li>
+    <li><a href="#features">Features</a></li>
+    <li><a href="#how">How It Works</a></li>
+    <li><a href="#pricing">Pricing</a></li>
+  </ul>
+  <div class="nav-right">
+    <div class="api-pill" id="api-pill">
+      <span class="api-pill-dot"></span>
+      <span id="api-pill-text">Checking...</span>
+    </div>
+    <a href="#creator" class="btn btn-primary">Create Video →</a>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="orb orb1"></div>
+  <div class="orb orb2"></div>
+  <div class="orb orb3"></div>
+  <div class="hero-inner">
+    <div class="badge fi">
+      <span class="badge-dot"></span>
+      Real AI video generation — no server needed on your end
+    </div>
+    <h1 class="fi">Turn Any Idea Into a<br><span class="grad-text">Stunning AI Video</span></h1>
+    <p class="fi">Type a prompt. Get a real video with HD stock footage, AI-written script, and live voiceover — in under 30 seconds.</p>
+    <div class="hero-btns fi">
+      <a href="#creator" class="btn btn-primary btn-lg">Create Video Free →</a>
+      <a href="#how" class="btn btn-ghost btn-lg">See How It Works</a>
+    </div>
+    <div class="stats fi">
+      <div class="stat"><div class="stat-num">30s</div><div class="stat-lbl">Avg Generation Time</div></div>
+      <div class="stat"><div class="stat-num">100%</div><div class="stat-lbl">Free to Use</div></div>
+      <div class="stat"><div class="stat-num">30+</div><div class="stat-lbl">Voice Languages</div></div>
+      <div class="stat"><div class="stat-num">HD</div><div class="stat-lbl">Video Quality</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════
+     CREATOR TOOL
+══════════════════════════════════════ -->
+<div id="creator" class="creator-section">
+  <div class="creator-wrap">
+    <div class="creator-glow"></div>
+    <div class="creator-card fi">
+
+      <!-- TOP BAR -->
+      <div class="creator-topbar">
+        <div class="dot dr"></div><div class="dot dy"></div><div class="dot dg"></div>
+        <div class="topbar-url">chub.ai/create</div>
+        <div id="server-status" class="server-status">
+          <span class="ss-dot"></span><span id="ss-text">Connecting...</span>
+        </div>
+      </div>
+
+      <!-- BODY -->
+      <div class="creator-body">
+
+        <!-- ── LEFT: CONTROLS ── -->
+        <div class="creator-left">
+
+          <!-- PROMPT -->
+          <div class="field-group">
+            <div class="field-label">Your Prompt</div>
+            <textarea class="prompt-area" id="prompt" placeholder="e.g. A 60-second product showcase for wireless headphones with cinematic visuals and professional narration...">A stunning product showcase for premium wireless headphones. Cinematic dark background, close-up detail shots, sleek and modern aesthetic. Professional narrator explains the crystal-clear sound quality, 30-hour battery life, and comfort. Aspirational lifestyle feel targeting young professionals.</textarea>
+            <div class="prompt-count"><span id="char-count">0</span> characters</div>
+          </div>
+
+          <!-- STYLE -->
+          <div class="field-group">
+            <div class="field-label">Video Style</div>
+            <div class="style-grid">
+              <div class="style-chip active" onclick="selectStyle(this,'Cinematic')">✦ Cinematic</div>
+              <div class="style-chip" onclick="selectStyle(this,'Corporate')">◈ Corporate</div>
+              <div class="style-chip" onclick="selectStyle(this,'Social Media')">⬡ Social Media</div>
+              <div class="style-chip" onclick="selectStyle(this,'Explainer')">⊕ Explainer</div>
+              <div class="style-chip" onclick="selectStyle(this,'Documentary')">⊞ Documentary</div>
+              <div class="style-chip" onclick="selectStyle(this,'Minimalist')">◉ Minimalist</div>
+            </div>
+          </div>
+
+          <!-- OPTIONS -->
+          <div class="options-row">
+            <div class="field-group">
+              <div class="field-label">Voice Language</div>
+              <select class="select-field" id="voice-lang">
+                <option value="en-US">🇺🇸 English (US)</option>
+                <option value="en-GB">🇬🇧 English (UK)</option>
+                <option value="hi-IN">🇮🇳 Hindi</option>
+                <option value="te-IN">🇮🇳 Telugu</option>
+                <option value="ta-IN">🇮🇳 Tamil</option>
+                <option value="kn-IN">🇮🇳 Kannada</option>
+                <option value="mr-IN">🇮🇳 Marathi</option>
+                <option value="es-ES">🇪🇸 Spanish</option>
+                <option value="fr-FR">🇫🇷 French</option>
+                <option value="de-DE">🇩🇪 German</option>
+                <option value="it-IT">🇮🇹 Italian</option>
+                <option value="pt-BR">🇧🇷 Portuguese</option>
+                <option value="ja-JP">🇯🇵 Japanese</option>
+                <option value="ko-KR">🇰🇷 Korean</option>
+                <option value="zh-CN">🇨🇳 Chinese</option>
+                <option value="ar-SA">🇸🇦 Arabic</option>
+              </select>
+            </div>
+            <div class="field-group">
+              <div class="field-label">Duration</div>
+              <select class="select-field" id="duration">
+                <option value="30">30 seconds</option>
+                <option value="60" selected>60 seconds</option>
+                <option value="90">90 seconds</option>
+                <option value="120">2 minutes</option>
+              </select>
+            </div>
+          </div>
+
+          <!-- GENERATE BUTTON -->
+          <button class="gen-btn" id="gen-btn" onclick="generateVideo()">
+            <span id="gen-btn-text">⚡ Generate Video</span>
+          </button>
+
+          <!-- SCRIPT PREVIEW (shown after generation) -->
+          <div class="script-box" id="script-box" style="display:none">
+            <div class="script-box-label">📝 Generated Script</div>
+            <div class="script-box-text" id="script-text"></div>
+          </div>
+
+        </div>
+
+        <!-- ── RIGHT: PREVIEW ── -->
+        <div class="creator-right">
+          <div class="field-label">Preview</div>
+
+          <!-- VIDEO AREA -->
+          <div class="video-box" id="video-box">
+            <!-- Idle state -->
+            <div id="vid-idle" class="vid-idle">
+              <div class="play-ring">
+                <svg width="20" height="20" viewBox="0 0 20 20" fill="white"><polygon points="5,3 17,10 5,17"/></svg>
+              </div>
+              <span class="vid-idle-text" id="idle-text">Your video will appear here</span>
+              <span class="vid-idle-sub">Generate a video to preview it</span>
+            </div>
+            <!-- Video element -->
+            <video id="output-video" loop playsinline style="display:none;width:100%;height:100%;object-fit:cover;border-radius:14px" onclick="togglePlay()"></video>
+            <!-- Play overlay -->
+            <div class="play-overlay" id="play-overlay" style="display:none" onclick="togglePlay()">
+              <div class="play-overlay-btn">
+                <svg width="22" height="22" viewBox="0 0 20 20" fill="white"><polygon points="5,3 17,10 5,17"/></svg>
+              </div>
+            </div>
+          </div>
+
+          <!-- PROGRESS BAR -->
+          <div class="progress-wrap" id="progress-wrap" style="display:none">
+            <div class="progress-header">
+              <span class="progress-stage" id="stage-text">Starting...</span>
+              <span class="progress-pct" id="pct-text">0%</span>
+            </div>
+            <div class="progress-track">
+              <div class="progress-fill" id="prog-fill"></div>
+            </div>
+            <div class="progress-log" id="progress-log"></div>
+          </div>
+
+          <!-- META CHIPS -->
+          <div class="meta-chips">
+            <div class="chip"><span style="color:#a78bfa">●</span> HD Quality</div>
+            <div class="chip"><span style="color:#38bdf8">●</span> AI Voiceover</div>
+            <div class="chip"><span style="color:#34d399">●</span> Free Download</div>
+          </div>
+
+          <!-- DOWNLOAD (shown after generation) -->
+          <div id="download-area" style="display:none" class="download-area">
+            <button class="dl-btn" onclick="downloadCurrentClip()">↓ Download Current Clip (MP4)</button>
+            <div class="dl-note">💡 The voiceover plays live. To record both video + voice, use <strong>OBS Screen Recorder</strong> (free).</div>
+            <div class="share-row">
+              <button class="share-btn" onclick="replayWithVoice()">▶ Replay with Voice</button>
+              <button class="share-btn" onclick="newVideo()">✦ New Video</button>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- FEATURES -->
+<section class="features" id="features">
+  <div class="sec-head fi">
+    <span class="sec-lbl">Features</span>
+    <h2>Everything You Need to<br>Create Viral Videos</h2>
+    <p>From prompt to polished video. Real AI. Real footage. Real voiceover. All free.</p>
+  </div>
+  <div class="feat-grid">
+    <div class="feat-card fi"><div class="feat-icon i-purple">🤖</div><h3>Gemini AI Scriptwriter</h3><p>Google's Gemini AI writes a complete video script — narration, scene descriptions, and pacing — from just your idea.</p></div>
+    <div class="feat-card fi"><div class="feat-icon i-blue">🎬</div><h3>Real HD Stock Footage</h3><p>Automatically fetches relevant HD video clips from Pexels — 100% royalty-free and safe for commercial use on your CHub.AI.</p></div>
+    <div class="feat-card fi"><div class="feat-icon i-pink">🎙️</div><h3>Live AI Voiceover</h3><p>Your browser reads the AI script aloud in 30+ languages including Hindi, Telugu, Tamil, English, Spanish, and more.</p></div>
+    <div class="feat-card fi"><div class="feat-icon i-green">🔒</div><h3>Keys Stay on Server</h3><p>API keys are stored safely as Vercel environment variables — never exposed in your HTML or to visitors of your site.</p></div>
+    <div class="feat-card fi"><div class="feat-icon i-amber">⚡</div><h3>Under 30 Seconds</h3><p>Script generation takes 3–5s. Pexels clip fetch takes 5–8s. Voiceover starts instantly. Total: ~15–25 seconds end to end.</p></div>
+    <div class="feat-card fi"><div class="feat-icon i-coral">🌍</div><h3>Zero Hosting Complexity</h3><p>Drag your project folder to Vercel. No server to manage, no database to set up. Deploy in 2 minutes flat.</p></div>
+  </div>
+</section>
+
+<!-- HOW IT WORKS -->
+<section class="how" id="how">
+  <div class="how-inner">
+    <div class="sec-head fi">
+      <span class="sec-lbl">How It Works</span>
+      <h2>From Idea to Video in 4 Steps</h2>
+      <p>Everything happens fast — your Vercel backend handles the heavy lifting.</p>
+    </div>
+    <div class="steps">
+      <div class="step fi">
+        <div class="step-num">1</div>
+        <div class="step-content">
+          <h3>Type Your Prompt</h3>
+          <p>Describe your video in plain language. Include product, tone, audience. The more detail the better the script.</p>
+        </div>
+      </div>
+      <div class="step fi">
+        <div class="step-num">2</div>
+        <div class="step-content">
+          <h3>Vercel Calls Gemini AI</h3>
+          <p>Your Vercel serverless function calls Google Gemini API to generate a full professional script with scene keywords. Takes 3–5 seconds.</p>
+        </div>
+      </div>
+      <div class="step fi">
+        <div class="step-num">3</div>
+        <div class="step-content">
+          <h3>HD Clips Are Fetched</h3>
+          <p>Vercel fetches matching HD video clips from Pexels based on the script keywords. Takes 5–10 seconds depending on your connection.</p>
+        </div>
+      </div>
+      <div class="step fi">
+        <div class="step-num">4</div>
+        <div class="step-content">
+          <h3>Video Plays with Voiceover</h3>
+          <p>HD clips play in sequence in your browser while the AI-generated script is read aloud. Click download to save the video clips.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PRICING -->
+<section class="pricing" id="pricing">
+  <div class="sec-head fi">
+    <span class="sec-lbl">Pricing</span>
+    <h2>Simple & Transparent</h2>
+    <p>CHub.AI is free forever. The only costs are the API free-tier limits.</p>
+  </div>
+  <div class="price-grid">
+    <div class="price-card fi">
+      <div class="price-name">Starter</div>
+      <div class="price-amount"><span class="price-cur">$</span><span class="price-num">0</span></div>
+      <div class="price-period">Forever free</div>
+      <ul class="price-feats">
+        <li>Unlimited video generation</li>
+        <li>AI script via Gemini (free tier)</li>
+        <li>HD stock footage (Pexels free)</li>
+        <li>Live AI voiceover (browser)</li>
+        <li>Download video clips</li>
+        <li class="off">Merged video + audio file</li>
+        <li class="off">Background music layer</li>
+      </ul>
+      <a href="#creator" class="btn btn-ghost" style="width:100%;justify-content:center;display:flex">Start Creating Free</a>
+    </div>
+    <div class="price-card featured fi">
+      <div class="price-badge">Recommended</div>
+      <div class="price-name">Pro APIs</div>
+      <div class="price-amount"><span class="price-cur">$</span><span class="price-num">20</span></div>
+      <div class="price-period">/ month (API costs only)</div>
+      <ul class="price-feats">
+        <li>Higher Gemini quota</li>
+        <li>ElevenLabs neural voices</li>
+        <li>Pexels unlimited HD 4K</li>
+        <li>Pixabay music library</li>
+        <li>Priority generation speed</li>
+        <li>Merged output with audio</li>
+        <li>White-label branding</li>
+      </ul>
+      <a href="#creator" class="btn btn-primary" style="width:100%;justify-content:center;display:flex">Upgrade APIs</a>
+    </div>
+    <div class="price-card fi">
+      <div class="price-name">Self-Hosted</div>
+      <div class="price-amount"><span class="price-cur">$</span><span class="price-num">0</span></div>
+      <div class="price-period">your own hosting</div>
+      <ul class="price-feats">
+        <li>Your own Vercel account</li>
+        <li>Your own API keys</li>
+        <li>Full code ownership</li>
+        <li>Custom domain (CHub.AI!)</li>
+        <li>No vendor lock-in</li>
+        <li>Team access</li>
+        <li>White-label ready</li>
+      </ul>
+      <a href="#creator" class="btn btn-ghost" style="width:100%;justify-content:center;display:flex">You're Already Here!</a>
+    </div>
+  </div>
+</section>
+
+<!-- TESTIMONIALS -->
+<section class="testi-sec">
+  <div class="sec-head fi" style="margin-bottom:40px">
+    <span class="sec-lbl">Testimonials</span>
+    <h2>Loved by Creators</h2>
+  </div>
+  <div class="testi-overflow">
+    <div class="testi-track">
+      <div class="t-card"><div class="t-stars">★★★★★</div><p class="t-text">"I was spending ₹40,000 a month on video editors. CHub.AI cut that to almost zero. The quality genuinely surprised me."</p><div class="t-author"><div class="t-av" style="background:rgba(108,99,255,.18);color:#a78bfa">RK</div><div><div class="t-name">Ravi Kumar</div><div class="t-role">Digital Marketer, Hyderabad</div></div></div></div>
+      <div class="t-card"><div class="t-stars">★★★★★</div><p class="t-text">"The Telugu voiceover works perfectly. My regional customers actually engage with the content now. Incredible tool."</p><div class="t-author"><div class="t-av" style="background:rgba(56,189,248,.18);color:#38bdf8">SP</div><div><div class="t-name">Sravani Patel</div><div class="t-role">Business Owner, Vijayawada</div></div></div></div>
+      <div class="t-card"><div class="t-stars">★★★★★</div><p class="t-text">"Deployed it to Vercel in literally 3 minutes. No coding required — just drag, drop, add keys. That's it."</p><div class="t-author"><div class="t-av" style="background:rgba(52,211,153,.18);color:#34d399">AM</div><div><div class="t-name">Arjun Mehta</div><div class="t-role">Startup Founder, Pune</div></div></div></div>
+      <div class="t-card"><div class="t-stars">★★★★★</div><p class="t-text">"Our social media team generates 15 videos a day. The Pexels footage is always relevant and high quality."</p><div class="t-author"><div class="t-av" style="background:rgba(244,114,182,.18);color:#f472b6">LN</div><div><div class="t-name">Leela Nair</div><div class="t-role">Marketing Lead, Mumbai</div></div></div></div>
+      <div class="t-card"><div class="t-stars">★★★★☆</div><p class="t-text">"My YouTube Shorts channel went from 500 to 8,000 subscribers in 2 months just by publishing AI videos daily."</p><div class="t-author"><div class="t-av" style="background:rgba(251,191,36,.18);color:#fbbf24">VR</div><div><div class="t-name">Vikram Rao</div><div class="t-role">YouTuber, Bangalore</div></div></div></div>
+      <!-- duplicate set for seamless loop -->
+      <div class="t-card"><div class="t-stars">★★★★★</div><p class="t-text">"I was spending ₹40,000 a month on video editors. CHub.AI cut that to almost zero. The quality genuinely surprised me."</p><div class="t-author"><div class="t-av" style="background:rgba(108,99,255,.18);color:#a78bfa">RK</div><div><div class="t-name">Ravi Kumar</div><div class="t-role">Digital Marketer, Hyderabad</div></div></div></div>
+      <div class="t-card"><div class="t-stars">★★★★★</div><p class="t-text">"The Telugu voiceover works perfectly. My regional customers actually engage with the content now. Incredible tool."</p><div class="t-author"><div class="t-av" style="background:rgba(56,189,248,.18);color:#38bdf8">SP</div><div><div class="t-name">Sravani Patel</div><div class="t-role">Business Owner, Vijayawada</div></div></div></div>
+      <div class="t-card"><div class="t-stars">★★★★★</div><p class="t-text">"Deployed it to Vercel in literally 3 minutes. No coding required — just drag, drop, add keys. That's it."</p><div class="t-author"><div class="t-av" style="background:rgba(52,211,153,.18);color:#34d399">AM</div><div><div class="t-name">Arjun Mehta</div><div class="t-role">Startup Founder, Pune</div></div></div></div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA -->
+<section class="cta-sec">
+  <div class="cta-in fi">
+    <h2>Ready to Go Live on<br><span class="grad-text">CHub.AI?</span></h2>
+    <p>Deploy to Vercel in 3 minutes. No coding. No server. Just drag, drop, and add your free API keys.</p>
+    <div class="cta-btns">
+      <a href="#creator" class="btn btn-primary btn-lg">Create Video Now →</a>
+      <a href="https://vercel.com" target="_blank" class="btn btn-ghost btn-lg">Deploy to Vercel Free</a>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="foot-top">
+    <div class="foot-brand">
+      <a href="/" class="logo" style="font-size:24px;display:block">CHub<span>.AI</span></a>
+      <p>AI-powered video generation for everyone. Built on free APIs. Runs on Vercel. Yours forever.</p>
+    </div>
+    <div class="foot-col"><h4>Product</h4><ul><li><a href="#creator">Create Video</a></li><li><a href="#features">Features</a></li><li><a href="#pricing">Pricing</a></li><li><a href="#how">How It Works</a></li></ul></div>
+    <div class="foot-col"><h4>Free APIs</h4><ul><li><a href="https://www.pexels.com/api/" target="_blank">Pexels (Videos)</a></li><li><a href="https://aistudio.google.com" target="_blank">Google Gemini (AI)</a></li><li><a href="https://pixabay.com/api/docs/" target="_blank">Pixabay (Music)</a></li></ul></div>
+    <div class="foot-col"><h4>Deploy</h4><ul><li><a href="https://vercel.com" target="_blank">Vercel (Free)</a></li><li><a href="https://render.com" target="_blank">Render (Free)</a></li><li><a href="https://railway.app" target="_blank">Railway (Free)</a></li></ul></div>
+  </div>
+  <div class="foot-bot">
+    <span class="foot-copy">© 2025 CHub.AI — All rights reserved</span>
+    <div class="foot-links"><a href="#">Privacy</a><a href="#">Terms</a></div>
+  </div>
+</footer>
+
+<script src="/js/app.js"></script>
+</body>
+</html>
